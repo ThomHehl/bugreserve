@@ -1,27 +1,30 @@
 package com.bugreserve.manage.model.issue;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Calendar;
 
 @Table
-@Entity(name="related_issue")
-public class RelatedIssue {
+@Entity(name="workflow_state")
+public class WorflowState {
     @Id
     @GeneratedValue
     @Column(nullable = false)
     private Long id;
 
-    @Column(name="from_issue", nullable = false)
-    private Issue fromIssue;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "post_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Issue issue;
 
-    @Column(name="to_issue", nullable = false)
-    private Issue toIssue;
-
-    @Column(name="issue_relation_type")
+    @Column(name="workflow_step", nullable = false)
     @Enumerated(EnumType.STRING)
-    private IssueRelationType issueRelationType;
+    private WorkflowStep workflowStep;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="start_date", nullable = false)

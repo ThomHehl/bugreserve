@@ -11,7 +11,7 @@ public class UserGroup implements Serializable {
     @Column(nullable = false)
     private Long id;
 
-    @Column
-    private String userName;
+    @Column(name = "group_name", nullable = false)
+    private String groupName;
 
 }

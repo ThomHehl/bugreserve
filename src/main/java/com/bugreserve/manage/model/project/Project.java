@@ -15,6 +15,7 @@ public class Project implements Serializable {
     private String name;
 
     @Column(nullable = false)
+    @Lob
     private String description;
 
 }
