@@ -1,4 +1,4 @@
-package com.bugreserve.manage.model;
+package com.bugreserve.manage.model.issue;
 
 public enum IssueType {
     bug,
