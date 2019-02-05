@@ -1,0 +1,60 @@
+logging:
+  level:
+    root: INFO
+    com.heavyweightsoftware: DEBUG
+    org.springframework: DEBUG
+
+main:
+  hostname: ws.lexaholic.com
+---
+
+spring:
+  profiles: dev
+
+  datasource:
+      url: jdbc:h2:mem:test
+      username: sa
+      password: sa
+
+logging:
+  level:
+    root: INFO
+    com.heavyweightsoftware: DEBUG
+
+main:
+  hostname: localhost
+
+---
+
+spring:
+  profiles: test
+
+  datasource:
+      url: jdbc:mariadb://testbox:3306/quotecipher
+      username: quotecipher
+      password: quotecipher
+
+logging:
+  level:
+    root: INFO
+    com.heavyweightsoftware: DEBUG
+    org.springframework: DEBUG
+
+main:
+  hostname: testbox
+
+---
+
+spring:
+  profiles: production
+
+  datasource:
+      url: jdbc:mariadb://dbinstance.cxwbfc08logl.us-east-1.rds.amazonaws.com:3306/quotecipher
+      username: quotecipher
+      password: R$)837ef
+
+logging:
+  level:
+    root: WARN
+    com.heavyweightsoftware: WARN
+    org.springframework: WARN
