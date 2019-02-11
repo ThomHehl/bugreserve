@@ -41,7 +41,7 @@ class UserTest extends Specification {
 
     def "Equals similar object"() {
         given: "A similar object"
-        User other = getUser();
+        User other = getUser()
 
         when: "Comparing"
         boolean result = user.equals(other) && user.hashCode() == other.hashCode()
@@ -52,7 +52,7 @@ class UserTest extends Specification {
 
     def "Equals different object"() {
         given: "A different object"
-        User other = getUser2();
+        User other = getUser2()
 
         when: "Comparing"
         boolean result = user.equals(other)
