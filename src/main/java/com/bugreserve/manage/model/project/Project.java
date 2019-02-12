@@ -1,5 +1,7 @@
 package com.bugreserve.manage.model.project;
 
+import com.heavyweightsoftware.util.StringHelper;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -7,6 +9,8 @@ import java.util.Objects;
 @Table
 @Entity(name="project")
 public class Project implements Serializable {
+    public static final int             KEY_LENGTH = 64;
+
     @Id
     @GeneratedValue
     @Column(nullable = false)
@@ -14,6 +18,9 @@ public class Project implements Serializable {
 
     @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
+    private String key;
 
     @Column(nullable = false)
     @Lob
@@ -33,6 +40,18 @@ public class Project implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey() {
+        this.key = StringHelper.generateRandomUrlSafe(KEY_LENGTH);
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getDescription() {

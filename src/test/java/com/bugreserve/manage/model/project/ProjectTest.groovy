@@ -59,4 +59,12 @@ class ProjectTest extends Specification {
         then: "Should not be equal"
         !result
     }
+
+    def "Set random key"() {
+        when: "Setting the key to a random value"
+        project.setKey()
+
+        then: "Should not be null"
+        project.getKey() != null
+    }
 }

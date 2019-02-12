@@ -4,6 +4,8 @@ gradle
 
 # Ignore IntelliJ
 .idea
+*.iml
 
 # Ignore Gradle build output directory
 build
+classes

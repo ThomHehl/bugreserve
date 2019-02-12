@@ -3,6 +3,7 @@ package com.bugreserve.manage.model.user;
 import com.bugreserve.manage.model.issue.Issue;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.heavyweightsoftware.util.DateHelper;
+import com.heavyweightsoftware.util.StringHelper;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedDate;
@@ -13,9 +14,11 @@ import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Objects;
 
-@Table
+@Table(indexes = { @Index(name = "IDX_USER", columnList = "user_id,notified_date") })
 @Entity(name="notification")
 public class Notification implements Serializable {
+    protected static final int          KEY_LENGTH = 64;
+
     @Id
     @GeneratedValue
     @Column(nullable = false)
@@ -45,6 +48,9 @@ public class Notification implements Serializable {
     @Column(nullable = false)
     @Lob
     private String text;
+
+    @Column(nullable = false)
+    private String key;
 
     public Long getId() {
         return id;
@@ -92,6 +98,18 @@ public class Notification implements Serializable {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey() {
+        this.key = StringHelper.generateRandomUrlSafe(KEY_LENGTH);
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     @Override

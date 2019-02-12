@@ -17,6 +17,7 @@ class NotificationTest extends Specification {
         result.setText("Four score and seven years ago.")
         result.setUser(UserTest.getUser())
         result.setCreationDate(LocalDateTime.now())
+        result.setKey()
 
         return result
     }
@@ -30,6 +31,16 @@ class NotificationTest extends Specification {
         result.setUser(UserTest.getUser2())
         result.setCreationDate(LocalDateTime.now().minusDays(5))
         result.setNotifiedDate(LocalDateTime.now().minusDays(3))
+        result.setKey()
+
+        return result
+    }
+
+    public static List<Notification> getNotifications() {
+        List<Notification> result = new ArrayList<>()
+
+        result.add(getNotification())
+        result.add(getNotification2())
 
         return result
     }
