@@ -1,28 +1,33 @@
 package com.bugreserve.manage.controller;
 
+import com.bugreserve.manage.model.issue.IssueType;
 import com.bugreserve.manage.service.NotificationService;
 import com.bugreserve.manage.to.NotificationTo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
+@CrossOrigin
 @RequestMapping("/restapi")
 public class ManageController {
-    private static final Logger LOGGER = LogManager.getLogger(ManageController.class.getName());
+    public static final String          SETUP_ISSUE_TYPE = "issueType";
+
+    private static final Logger         LOGGER = LogManager.getLogger(NotificationService.class);
 
     @Autowired
     private NotificationService         notificationService;
 
     @GetMapping(value = "/currentNotifications")
     public @ResponseBody
-    List<NotificationTo> getCurrentNotifications(String authId) {
+    List<NotificationTo> getCurrentNotifications(@RequestParam String authId) {
         List<NotificationTo> result;
 
         try {
@@ -31,6 +36,26 @@ public class ManageController {
             String msg = "Error retrieving notifications for:" + authId;
             LOGGER.error(msg, tw);
             throw new RuntimeException(msg, tw);
+        }
+
+        return result;
+    }
+
+    @GetMapping(value = "/setup")
+    public @ResponseBody
+    Map<String, List<String>> getSetup() {
+        Map<String, List<String >> result = new HashMap<>();
+
+        result.put(SETUP_ISSUE_TYPE, toList(IssueType.values()));
+
+        return result;
+    }
+
+    private List<String> toList(Object[] values) {
+        List<String> result = new ArrayList<>();
+
+        for (Object obj : values) {
+            result.add(obj.toString());
         }
 
         return result;

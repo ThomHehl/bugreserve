@@ -37,17 +37,18 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
     testImplementation 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     implementation 'org.mariadb.jdbc:mariadb-java-client:2.4.0'
-    testImplementation 'com.h2database:h2:1.4.197'
+    implementation 'com.h2database:h2:1.4.197'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'org.apache.logging.log4j:log4j-api:2.11.2'
     implementation 'org.apache.logging.log4j:log4j-core:2.11.2'
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     // Use the latest Groovy version for Spock testing
     testImplementation 'org.codehaus.groovy:groovy-all:2.5.4'

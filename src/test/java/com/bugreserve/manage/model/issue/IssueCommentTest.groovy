@@ -44,6 +44,7 @@ class IssueCommentTest extends Specification {
     def "Equals similar object"() {
         given: "A similar object"
         IssueComment other = getIssueComment();
+        other.startDate = issueComment.startDate
 
         when: "Comparing"
         boolean result = issueComment.equals(other) && issueComment.hashCode() == other.hashCode()
