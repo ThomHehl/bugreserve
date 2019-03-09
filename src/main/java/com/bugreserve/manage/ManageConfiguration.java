@@ -12,7 +12,6 @@ import org.springframework.web.filter.CorsFilter;
 public class ManageConfiguration {
     private static final Logger         LOGGER = LogManager.getLogger(ManageConfiguration.class);
 
-
     @Bean
     public CorsFilter corsFilter() {
         LOGGER.debug("Configuring CORS");

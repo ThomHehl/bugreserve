@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@CrossOrigin
 @RequestMapping("/restapi")
 public class ManageController {
     public static final String          SETUP_ISSUE_TYPE = "issueType";
@@ -28,6 +27,7 @@ public class ManageController {
     @GetMapping(value = "/currentNotifications")
     public @ResponseBody
     List<NotificationTo> getCurrentNotifications(@RequestParam String authId) {
+        LOGGER.debug("getCurrentNotifications(" + authId + ')');
         List<NotificationTo> result;
 
         try {
@@ -44,6 +44,7 @@ public class ManageController {
     @GetMapping(value = "/setup")
     public @ResponseBody
     Map<String, List<String>> getSetup() {
+        LOGGER.debug("getSetup()");
         Map<String, List<String >> result = new HashMap<>();
 
         result.put(SETUP_ISSUE_TYPE, toList(IssueType.values()));

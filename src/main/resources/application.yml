@@ -6,6 +6,12 @@ logging:
 
 main:
   hostname: ws.lexaholic.com
+
+spring:
+  security:
+    user:
+      name: thom
+      password: god
 ---
 
 spring:
